@@ -1,0 +1,154 @@
+<robot name="onshape">
+<link name="rail">
+<visual>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="package://pendulum_sim/urdf/pendulum/rail.stl"/>
+</geometry>
+<material name="rail_material">
+<color rgba="0.61568627450980395466 0.81176470588235294379 0.92941176470588238168 1.0"/>
+</material>
+</visual>
+<collision>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="package://pendulum_sim/urdf/pendulum/rail.stl"/>
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0.5 1.214041613687613622e-18 0.0088793103448275793182" rpy="0 0 0"/>
+<mass value="1.9719999999999968665" />
+<inertia ixx="0.00038356494252873472254" ixy="0"  ixz="0" iyy="0.16442208994252849319" iyz="0" izz="0.16462814166666642213" />
+</inertial>
+</link>
+
+<link name="cart">
+<visual>
+<origin xyz="5.2041704279304212832e-18 -0.024999999999999984041 0" rpy="-1.570796326794896558 -1.570796326794896558 0" />
+<geometry>
+<mesh filename="package://pendulum_sim/urdf/pendulum/cart.stl"/>
+</geometry>
+<material name="cart_material">
+<color rgba="0.64705882352941179736 0.64705882352941179736 0.64705882352941179736 1.0"/>
+</material>
+</visual>
+<collision>
+<origin xyz="5.2041704279304212832e-18 -0.024999999999999984041 0" rpy="-1.570796326794896558 -1.570796326794896558 0" />
+<geometry>
+<mesh filename="package://pendulum_sim/urdf/pendulum/cart.stl"/>
+</geometry>
+</collision>
+<inertial>
+<origin xyz="-2.3803151807642997589e-18 0.011462788084237254121 0.050000000000000002776" rpy="0 0 0"/>
+<mass value="0.38272566008882141775" />
+<inertia ixx="0.00030866530822605629109" ixy="0"  ixz="0" iyy="0.0003021198363673817085" iyz="0" izz="0.00018148449689568352055" />
+</inertial>
+</link>
+
+<link name="arm">
+<visual>
+<origin xyz="-0.050000000000000044409 0.055000000000000007216 0.024999999999999984041" rpy="1.5707963267948958919 -0 -3.4032114800803118711e-62" />
+<geometry>
+<mesh filename="package://pendulum_sim/urdf/pendulum/arm.stl"/>
+</geometry>
+<material name="arm_material">
+<color rgba="0.2313725490196078538 0.38039215686274507888 0.7058823529411765163 1.0"/>
+</material>
+</visual>
+<collision>
+<origin xyz="-0.050000000000000044409 0.055000000000000007216 0.024999999999999984041" rpy="1.5707963267948958919 -0 -3.4032114800803118711e-62" />
+<geometry>
+<mesh filename="package://pendulum_sim/urdf/pendulum/arm.stl"/>
+</geometry>
+</collision>
+<inertial>
+<origin xyz="-4.8572257327350598644e-17 -0.10258249780194617085 0.001858838371445797541" rpy="0 0 0"/>
+<mass value="0.23823829541394234144" />
+<inertia ixx="0.0018903416201424970595" ixy="-5.9529763957119735854e-65"  ixz="-9.3133633217528090578e-66" iyy="6.3730910002287352156e-05" iyz="-0.00012359017572526008184" izz="0.0018791647202096748923" />
+</inertial>
+</link>
+
+<link name="arm_base">
+<visual>
+<origin xyz="0 0 6.9388939039072283776e-18" rpy="4.3140830754273776574e-32 1.9446922743316067835e-62 0" />
+<geometry>
+<mesh filename="package://pendulum_sim/urdf/pendulum/cube.stl"/>
+</geometry>
+<material name="cube_material">
+<color rgba="0.61568627450980395466 0.81176470588235294379 0.92941176470588238168 1.0"/>
+</material>
+</visual>
+<collision>
+<origin xyz="0 0 6.9388939039072283776e-18" rpy="4.3140830754273776574e-32 1.9446922743316067835e-62 0" />
+<geometry>
+<mesh filename="package://pendulum_sim/urdf/pendulum/cube.stl"/>
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0"/>
+<mass value="0" />
+<inertia ixx="0" ixy="0"  ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<joint name="arm_axis" type="fixed">
+<origin xyz="-5.5511151231257827021e-17 -4.1633363423443370266e-17 -0.008350000000000003253" rpy="1.570796326794896558 -0 -3.4032114800803118711e-62" />
+<parent link="arm" />
+<child link="arm_base" />
+<axis xyz="0 0 1"/>
+<limit effort="1" velocity="20" />
+<joint_properties friction="0.0"/>
+</joint>
+
+<link name="arm_tip">
+<visual>
+<origin xyz="0 0 0" rpy="4.3140830754274126899e-32 1.9446922743316067835e-62 0" />
+<geometry>
+<mesh filename="package://pendulum_sim/urdf/pendulum/cube.stl"/>
+</geometry>
+<material name="cube_material">
+<color rgba="0.61568627450980395466 0.81176470588235294379 0.92941176470588238168 1.0"/>
+</material>
+</visual>
+<collision>
+<origin xyz="0 0 0" rpy="4.3140830754274126899e-32 1.9446922743316067835e-62 0" />
+<geometry>
+<mesh filename="package://pendulum_sim/urdf/pendulum/cube.stl"/>
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0"/>
+<mass value="0" />
+<inertia ixx="0" ixy="0"  ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<joint name="arm_tip" type="fixed">
+<origin xyz="-5.5511151231257827021e-17 -0.25 -0.008350000000000003253" rpy="1.570796326794896558 -0 -3.4032114800803118711e-62" />
+<parent link="arm" />
+<child link="arm_tip" />
+<axis xyz="0 0 1"/>
+<limit effort="1" velocity="20" />
+<joint_properties friction="0.0"/>
+</joint>
+
+<joint name="arm" type="revolute">
+<origin xyz="-0.025000000000000018735 0.030000000000000005829 0.050000000000000044409" rpy="-3.1415926535897926719 -1.570796326794896558 0" />
+<parent link="cart" />
+<child link="arm" />
+<axis xyz="0 0 1"/>
+<limit effort="1" velocity="20" lower="-12.566370614359172464" upper="12.566370614359172464"/>
+<joint_properties friction="0.0"/>
+</joint>
+
+<joint name="cart" type="prismatic">
+<origin xyz="0.39562060872165150105 6.5339896915739099655e-18 0.025000000000000001388" rpy="1.570796326794896558 -0 1.570796326794896558" />
+<parent link="rail" />
+<child link="cart" />
+<axis xyz="0 0 1"/>
+<limit effort="1" velocity="20" lower="0" upper="0.9000000000000000222"/>
+<joint_properties friction="0.0"/>
+</joint>
+
+
+</robot>
