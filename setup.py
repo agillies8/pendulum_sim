@@ -26,7 +26,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'cart_pub = pendulum_sim.cart_pub:main'
+            'cart_pub = pendulum_sim.cart_pub:main',
+            'theta_plotter = pendulum_sim.theta_plotter:main'
         ],
     },
 )
