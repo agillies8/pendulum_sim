@@ -27,7 +27,8 @@ setup(
     entry_points={
         'console_scripts': [
             'cart_pub = pendulum_sim.cart_pub:main',
-            'theta_plotter = pendulum_sim.theta_plotter:main'
+            'theta_plotter = pendulum_sim.theta_plotter:main',
+            'lqr_controller = pendulum_sim.lqr_controller:main',
         ],
     },
 )
