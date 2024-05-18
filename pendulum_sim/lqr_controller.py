@@ -3,6 +3,7 @@ from rclpy.node import Node
 from std_msgs.msg import Float32MultiArray, Float32
 import numpy as np
 import scipy.linalg
+from geometry_msgs.msg import Twist, TransformStamped
 
 class InvertedPendulumController(Node):
     def __init__(self):
@@ -17,6 +18,10 @@ class InvertedPendulumController(Node):
 
         # Publisher for the control input
         self.publisher = self.create_publisher(Float32, 'control_input', 10)
+
+        # Create a publisher for the control input as a Twist message
+        self.control_publisher = self.create_publisher(Twist, 'cmd_vel', 10)
+
 
         # Define system parameters
         #These are taken from onshape: https://cad.onshape.com/documents/a25fd7446c6816d118f41bc7/v/ea0ee1229d9cc72d1dc7ae85/e/14f430cb89b5dbb9a7de108a
@@ -37,7 +42,7 @@ class InvertedPendulumController(Node):
                           [-1 / self.l / (self.M + self.m)]])
 
         # LQR weighting matrices
-        Q = np.diag([1, 1, 10, 100])
+        Q = np.diag([100, 1, 1, 1])
         R = np.array([[0.01]])
 
         # Solve the Riccati equation
@@ -53,6 +58,7 @@ class InvertedPendulumController(Node):
 
     def state_callback(self, msg):
         state = np.array(msg.data)
+        print(state)
 
         # Ensure the state vector is of the correct shape
         if state.shape[0] != 4:
@@ -61,14 +67,29 @@ class InvertedPendulumController(Node):
 
         # Compute the control input with respect to the set point
         error = state - self.x_ref
-        u = -np.dot(self.K, error)
+        u = np.dot(self.K, error)
 
         # Publish the control input
-        control_msg = Float32()
-        control_msg.data = float(u)
-        self.publisher.publish(control_msg)
+        # control_msg = Float32()
+        # control_msg.data = float(u)
+        # self.publisher.publish(control_msg)
 
-        self.get_logger().info(f'Published control input: {control_msg.data}')
+        min_value = -5
+        max_value = 5
+
+        clamped_u = self.clamp(u, min_value, max_value)
+
+
+        # Create and publish Twist message for control input
+        control_msg = Twist()
+        control_msg.linear.x = float(clamped_u)
+        self.control_publisher.publish(control_msg)
+
+        # self.get_logger().info(f'Published control input: {control_msg}')
+
+    def clamp(self, value, min_value, max_value):
+        return max(min_value, min(value, max_value))
+
 
 def main(args=None):
     rclpy.init(args=args)

@@ -29,6 +29,8 @@ setup(
             'cart_pub = pendulum_sim.cart_pub:main',
             'theta_plotter = pendulum_sim.theta_plotter:main',
             'lqr_controller = pendulum_sim.lqr_controller:main',
+            'state_pub = pendulum_sim.state_pub:main',
+
         ],
     },
 )
