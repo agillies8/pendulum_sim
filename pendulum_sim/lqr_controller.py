@@ -58,7 +58,6 @@ class InvertedPendulumController(Node):
 
     def state_callback(self, msg):
         state = np.array(msg.data)
-        print(state)
 
         # Ensure the state vector is of the correct shape
         if state.shape[0] != 4:
@@ -67,8 +66,9 @@ class InvertedPendulumController(Node):
 
         # Compute the control input with respect to the set point
         error = state - self.x_ref
-        u = np.dot(self.K, error)
-
+        self.K = [[0.1, 0, 0.5, 0.5]]
+        u = -np.dot(self.K, error)
+        # print(u)
         # Publish the control input
         # control_msg = Float32()
         # control_msg.data = float(u)

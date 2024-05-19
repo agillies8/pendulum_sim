@@ -34,7 +34,14 @@ class PendulumTFNode(Node):
         self.prev_time = None
         self.prev_total_rotation = None
 
-        
+
+        # List to store cart velocities for plotting
+        self.cart_velocities = []
+        self.times = []
+
+        # Initialize the plotter
+        self.plotter = Plotter(self.times, self.cart_velocities)
+
         #to track angles wrapping 306 or negative past zero
         self.tracker = AngleTracker()
 
@@ -77,9 +84,12 @@ class PendulumTFNode(Node):
             # Update previous positions and times
             self.prev_cart_x = cart_x
             self.prev_total_rotation = total_rotation
-
-
             self.prev_time = current_time
+
+            # Update the velocity list for plotting
+            self.times.append(current_time.sec + current_time.nanosec * 1e-9)
+            self.cart_velocities.append(np.radians(total_rotation_dot))
+            # self.plotter.update_plot()
 
 
             # Create and publish Float32MultiArray message
@@ -163,6 +173,41 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
+
+
+class Plotter:
+    def __init__(self, times, velocities):
+        self.times = times
+        self.velocities = velocities
+
+        # Set up the figure and axis
+        self.fig, self.ax = plt.subplots()
+        self.line, = self.ax.plot([], [], 'b-')
+        self.ax.set_xlim(0, 10)
+        self.ax.set_ylim(-2, 2)
+        self.ax.set_xlabel('Time (s)')
+        self.ax.set_ylabel('Cart Velocity (m/s)')
+
+        # Start the animation
+        self.ani = FuncAnimation(self.fig, self.update, self.data_gen, blit=False, interval=100, repeat=False)
+        plt.show(block=False)
+
+    def data_gen(self):
+        while True:
+            yield self.times, self.velocities
+
+    def update(self, data):
+        times, velocities = data
+        self.line.set_data(times, velocities)
+        self.ax.set_xlim(max(0, times[-1] - 10), times[-1])
+        self.ax.set_ylim(min(velocities) - 0.1, max(velocities) + 0.1)
+        self.ax.figure.canvas.draw()
+        return self.line,
+
+    def update_plot(self):
+        self.ani.event_source.stop()
+        self.ani = FuncAnimation(self.fig, self.update, self.data_gen, blit=False, interval=100, repeat=False)
+        plt.pause(0.001)
 
 class AngleTracker:
     def __init__(self):
