@@ -52,7 +52,7 @@ class InvertedPendulumController(Node):
         self.K = np.dot(np.linalg.inv(R), np.dot(self.B.T, P))
 
         # Desired set point for the state vector
-        self.x_ref = np.array([0.5, 0, 0, 0])
+        self.x_ref = np.array([0.75, 0, 0, 0])
 
         self.get_logger().info('Inverted Pendulum Controller Node Started')
 
@@ -66,7 +66,7 @@ class InvertedPendulumController(Node):
 
         # Compute the control input with respect to the set point
         error = state - self.x_ref
-        self.K = [[0.1, 0, 0.5, 0.5]]
+        self.K = [[15.1, 35, 0, 0]]
         u = -np.dot(self.K, error)
         # print(u)
         # Publish the control input
@@ -74,8 +74,8 @@ class InvertedPendulumController(Node):
         # control_msg.data = float(u)
         # self.publisher.publish(control_msg)
 
-        min_value = -5
-        max_value = 5
+        min_value = -50
+        max_value = 50
 
         clamped_u = self.clamp(u, min_value, max_value)
 
@@ -85,10 +85,17 @@ class InvertedPendulumController(Node):
         control_msg.linear.x = float(clamped_u)
         self.control_publisher.publish(control_msg)
 
-        # self.get_logger().info(f'Published control input: {control_msg}')
+        self.get_logger().info(f'Published control input: {control_msg}')
 
     def clamp(self, value, min_value, max_value):
         return max(min_value, min(value, max_value))
+    
+    def send_zero(self):
+        print('sent zero')
+        control_msg = Twist()
+        control_msg.linear.x = float(0)
+        self.control_publisher.publish(control_msg)
+        
 
 
 def main(args=None):
@@ -98,6 +105,8 @@ def main(args=None):
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:
+        
+        node.send_zero()
         pass
 
     # Destroy the node explicitly

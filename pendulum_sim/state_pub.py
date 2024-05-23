@@ -23,11 +23,14 @@ class PendulumTFNode(Node):
         self.publisher = self.create_publisher(Float32MultiArray, 'pendulum_state', 10)
 
         # Subscribe to the clock topic
-        self.clock_subscription = self.create_subscription(
-            Clock,
-            '/clock',
-            self.clock_callback,
-            10)
+        # self.clock_subscription = self.create_subscription(
+        #     Clock,
+        #     '/clock',
+        #     self.clock_callback,
+        #     10)
+
+        #Use Timer to periodically check for new transforms
+        self.timer = self.create_timer(0.1, self.timer_callback)
 
         # Variables to store previous positions and times
         self.prev_cart_x = None
@@ -47,15 +50,18 @@ class PendulumTFNode(Node):
 
         self.get_logger().info('Pendulum TF Node has been started.')
 
-    def clock_callback(self, msg):
-        # Extract the time from the clock message
-        current_time = msg.clock
-
+    # def clock_callback(self, msg):
+    #     # Extract the time from the clock message
+    #     current_time = msg.clock
+    def timer_callback(self):
+        current_time_both = self.get_clock().now().to_msg()
+        current_time= current_time_both.sec + current_time_both.nanosec * 1e-9
+        time = rclpy.time.Time()
         try:
             # Lookup transforms
-            cart_transform = self.tf_buffer.lookup_transform('world', 'cart', rclpy.time.Time())
+            cart_transform = self.tf_buffer.lookup_transform('world', 'cart', time)
 
-            theta_transform: TransformStamped = self.tf_buffer.lookup_transform('rail', 'arm_tip', rclpy.time.Time())
+            theta_transform = self.tf_buffer.lookup_transform('rail', 'arm_tip', time)
 
             
             # Extract the z-axis component from the quaternion
@@ -85,9 +91,10 @@ class PendulumTFNode(Node):
             self.prev_cart_x = cart_x
             self.prev_total_rotation = total_rotation
             self.prev_time = current_time
+            print(total_rotation_dot)
 
             # Update the velocity list for plotting
-            self.times.append(current_time.sec + current_time.nanosec * 1e-9)
+            self.times.append(current_time)
             self.cart_velocities.append(np.radians(total_rotation_dot))
             # self.plotter.update_plot()
 
@@ -97,10 +104,10 @@ class PendulumTFNode(Node):
             msg.data = [cart_x, cart_x_dot, np.radians(total_rotation), np.radians(total_rotation_dot)]
             self.publisher.publish(msg)
 
-            # self.get_logger().info(f'Published pendulum state: {msg.data}')
+            self.get_logger().info(f'Published pendulum state: {msg.data}')
             
         except Exception as e:
-            self.get_logger().warn(f'Could not get transform: {e}')
+            pass# self.get_logger().warn(f'Could not get transform: {e}')
 
     def calculate_position_and_velocity(self, value, prev_x, prev_time, current_time):
         # Extract positions
@@ -108,7 +115,7 @@ class PendulumTFNode(Node):
 
         # Calculate velocity
         if prev_x is not None and prev_time is not None:
-            dt = (Time.from_msg(current_time) - Time.from_msg(prev_time)).nanoseconds / 1e9
+            dt = current_time - prev_time
             x_dot = (x - prev_x) / dt if dt > 0 else 0.0
         else:
             x_dot = 0.0

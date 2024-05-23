@@ -31,6 +31,7 @@ setup(
             'lqr_controller = pendulum_sim.lqr_controller:main',
             'state_pub = pendulum_sim.state_pub:main',
             'joint_state_plotter = pendulum_sim.joint_state_plotter:main',
+            'clock_relay = pendulum_sim.clock_relay:main',
 
         ],
     },
