@@ -23,9 +23,10 @@ class ClockRelayNode(Node):
         relay_msg = Clock()
         relay_msg.clock.sec = msg.clock.sec
         relay_msg.clock.nanosec = msg.clock.nanosec
-        time.sleep(1.0)
+        self.get_logger().info(f'Published timestamp: {relay_msg.clock}')        
+        time.sleep(10.0)
         self.publisher.publish(relay_msg)
-        self.get_logger().info(f'Published timestamp: {relay_msg.clock}')
+
 
 def main(args=None):
     rclpy.init(args=args)
