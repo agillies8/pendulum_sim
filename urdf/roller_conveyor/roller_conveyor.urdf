@@ -1,0 +1,378 @@
+<robot name="onshape">
+<link name="conveyor_base">
+<visual>
+<origin xyz="0 0 0.91940000000000010605" rpy="0 -0 0" />
+<geometry>
+<mesh filename="package://pendulum_sim/urdf/roller_conveyor//conveyor_base.stl"/>
+</geometry>
+<material name="conveyor_base_material">
+<color rgba="0.61568627450980395466 0.81176470588235294379 0.92941176470588238168 1.0"/>
+</material>
+</visual>
+<collision>
+<origin xyz="0 0 0.91940000000000010605" rpy="0 -0 0" />
+<geometry>
+<mesh filename="package://pendulum_sim/urdf/roller_conveyor//conveyor_base.stl"/>
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0"/>
+<mass value="0" />
+<inertia ixx="0" ixy="0"  ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<link name="conveyor_roller">
+<visual>
+<origin xyz="-1.5 -1.1102230246251565404e-16 -0.3048000000000001819" rpy="-1.570796326794896558 -1.570796326794896558 0" />
+<geometry>
+<mesh filename="package://pendulum_sim/urdf/roller_conveyor//conveyor_roller.stl"/>
+</geometry>
+<material name="conveyor_roller_material">
+<color rgba="0.64705882352941179736 0.64705882352941179736 0.64705882352941179736 1.0"/>
+</material>
+</visual>
+<collision>
+<origin xyz="-1.5 -1.1102230246251565404e-16 -0.3048000000000001819" rpy="-1.570796326794896558 -1.570796326794896558 0" />
+<geometry>
+<mesh filename="package://pendulum_sim/urdf/roller_conveyor//conveyor_roller.stl"/>
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0"/>
+<mass value="0" />
+<inertia ixx="0" ixy="0"  ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<joint name="roller_1" type="revolute">
+<origin xyz="0.30480000000000012639 1.500000000000000222 0.91940000000000055014" rpy="1.570796326794896558 -0.79584190558026279838 1.570796326794896558" />
+<parent link="conveyor_base" />
+<child link="conveyor_roller" />
+<axis xyz="0 0 1"/>
+<limit effort="1" velocity="20" />
+<joint_properties friction="0.0"/>
+</joint>
+
+<link name="conveyor_roller_2">
+<visual>
+<origin xyz="-1.5 0 -0.3048000000000001819" rpy="-1.570796326794896558 -1.570796326794896558 0" />
+<geometry>
+<mesh filename="package://pendulum_sim/urdf/roller_conveyor//conveyor_roller.stl"/>
+</geometry>
+<material name="conveyor_roller_material">
+<color rgba="0.64705882352941179736 0.64705882352941179736 0.64705882352941179736 1.0"/>
+</material>
+</visual>
+<collision>
+<origin xyz="-1.5 0 -0.3048000000000001819" rpy="-1.570796326794896558 -1.570796326794896558 0" />
+<geometry>
+<mesh filename="package://pendulum_sim/urdf/roller_conveyor//conveyor_roller.stl"/>
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0"/>
+<mass value="0" />
+<inertia ixx="0" ixy="0"  ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<joint name="roller_2" type="revolute">
+<origin xyz="0.3048000000000001819 1.1999999999999999556 0.91940000000000010605" rpy="1.570796326794896558 -0 1.570796326794896558" />
+<parent link="conveyor_base" />
+<child link="conveyor_roller_2" />
+<axis xyz="0 0 1"/>
+<limit effort="1" velocity="20" />
+<joint_properties friction="0.0"/>
+</joint>
+
+<link name="conveyor_roller_3">
+<visual>
+<origin xyz="-1.5 0 -0.3048000000000001819" rpy="-1.570796326794896558 -1.570796326794896558 0" />
+<geometry>
+<mesh filename="package://pendulum_sim/urdf/roller_conveyor//conveyor_roller.stl"/>
+</geometry>
+<material name="conveyor_roller_material">
+<color rgba="0.64705882352941179736 0.64705882352941179736 0.64705882352941179736 1.0"/>
+</material>
+</visual>
+<collision>
+<origin xyz="-1.5 0 -0.3048000000000001819" rpy="-1.570796326794896558 -1.570796326794896558 0" />
+<geometry>
+<mesh filename="package://pendulum_sim/urdf/roller_conveyor//conveyor_roller.stl"/>
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0"/>
+<mass value="0" />
+<inertia ixx="0" ixy="0"  ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<joint name="roller_3" type="revolute">
+<origin xyz="0.3048000000000001819 0.89999999999999991118 0.91940000000000010605" rpy="1.570796326794896558 -0 1.570796326794896558" />
+<parent link="conveyor_base" />
+<child link="conveyor_roller_3" />
+<axis xyz="0 0 1"/>
+<limit effort="1" velocity="20" />
+<joint_properties friction="0.0"/>
+</joint>
+
+<link name="conveyor_roller_4">
+<visual>
+<origin xyz="-1.5 0 -0.3048000000000001819" rpy="-1.570796326794896558 -1.570796326794896558 0" />
+<geometry>
+<mesh filename="package://pendulum_sim/urdf/roller_conveyor//conveyor_roller.stl"/>
+</geometry>
+<material name="conveyor_roller_material">
+<color rgba="0.64705882352941179736 0.64705882352941179736 0.64705882352941179736 1.0"/>
+</material>
+</visual>
+<collision>
+<origin xyz="-1.5 0 -0.3048000000000001819" rpy="-1.570796326794896558 -1.570796326794896558 0" />
+<geometry>
+<mesh filename="package://pendulum_sim/urdf/roller_conveyor//conveyor_roller.stl"/>
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0"/>
+<mass value="0" />
+<inertia ixx="0" ixy="0"  ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<joint name="roller_4" type="revolute">
+<origin xyz="0.3048000000000001819 0.5999999999999999778 0.91940000000000010605" rpy="1.570796326794896558 -0 1.570796326794896558" />
+<parent link="conveyor_base" />
+<child link="conveyor_roller_4" />
+<axis xyz="0 0 1"/>
+<limit effort="1" velocity="20" />
+<joint_properties friction="0.0"/>
+</joint>
+
+<link name="conveyor_roller_5">
+<visual>
+<origin xyz="-1.5 0 -0.3048000000000001819" rpy="-1.570796326794896558 -1.570796326794896558 0" />
+<geometry>
+<mesh filename="package://pendulum_sim/urdf/roller_conveyor//conveyor_roller.stl"/>
+</geometry>
+<material name="conveyor_roller_material">
+<color rgba="0.64705882352941179736 0.64705882352941179736 0.64705882352941179736 1.0"/>
+</material>
+</visual>
+<collision>
+<origin xyz="-1.5 0 -0.3048000000000001819" rpy="-1.570796326794896558 -1.570796326794896558 0" />
+<geometry>
+<mesh filename="package://pendulum_sim/urdf/roller_conveyor//conveyor_roller.stl"/>
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0"/>
+<mass value="0" />
+<inertia ixx="0" ixy="0"  ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<joint name="roller_5" type="revolute">
+<origin xyz="0.3048000000000001819 0.30000000000000004441 0.91940000000000010605" rpy="1.570796326794896558 -0 1.570796326794896558" />
+<parent link="conveyor_base" />
+<child link="conveyor_roller_5" />
+<axis xyz="0 0 1"/>
+<limit effort="1" velocity="20" />
+<joint_properties friction="0.0"/>
+</joint>
+
+<link name="conveyor_roller_6">
+<visual>
+<origin xyz="-1.5 0 -0.3048000000000001819" rpy="-1.570796326794896558 -1.570796326794896558 0" />
+<geometry>
+<mesh filename="package://pendulum_sim/urdf/roller_conveyor//conveyor_roller.stl"/>
+</geometry>
+<material name="conveyor_roller_material">
+<color rgba="0.64705882352941179736 0.64705882352941179736 0.64705882352941179736 1.0"/>
+</material>
+</visual>
+<collision>
+<origin xyz="-1.5 0 -0.3048000000000001819" rpy="-1.570796326794896558 -1.570796326794896558 0" />
+<geometry>
+<mesh filename="package://pendulum_sim/urdf/roller_conveyor//conveyor_roller.stl"/>
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0"/>
+<mass value="0" />
+<inertia ixx="0" ixy="0"  ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<joint name="roller_6" type="revolute">
+<origin xyz="0.3048000000000001819 0 0.91940000000000010605" rpy="1.570796326794896558 -0 1.570796326794896558" />
+<parent link="conveyor_base" />
+<child link="conveyor_roller_6" />
+<axis xyz="0 0 1"/>
+<limit effort="1" velocity="20" lower="0" upper="0"/>
+<joint_properties friction="0.0"/>
+</joint>
+
+<link name="conveyor_roller_7">
+<visual>
+<origin xyz="-1.5 0 -0.3048000000000001819" rpy="-1.570796326794896558 -1.570796326794896558 0" />
+<geometry>
+<mesh filename="package://pendulum_sim/urdf/roller_conveyor//conveyor_roller.stl"/>
+</geometry>
+<material name="conveyor_roller_material">
+<color rgba="0.64705882352941179736 0.64705882352941179736 0.64705882352941179736 1.0"/>
+</material>
+</visual>
+<collision>
+<origin xyz="-1.5 0 -0.3048000000000001819" rpy="-1.570796326794896558 -1.570796326794896558 0" />
+<geometry>
+<mesh filename="package://pendulum_sim/urdf/roller_conveyor//conveyor_roller.stl"/>
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0"/>
+<mass value="0" />
+<inertia ixx="0" ixy="0"  ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<joint name="roller_7" type="revolute">
+<origin xyz="0.3048000000000001819 -0.30000000000000004441 0.91940000000000010605" rpy="1.570796326794896558 -0 1.570796326794896558" />
+<parent link="conveyor_base" />
+<child link="conveyor_roller_7" />
+<axis xyz="0 0 1"/>
+<limit effort="1" velocity="20" />
+<joint_properties friction="0.0"/>
+</joint>
+
+<link name="conveyor_roller_8">
+<visual>
+<origin xyz="-1.5 0 -0.3048000000000001819" rpy="-1.570796326794896558 -1.570796326794896558 0" />
+<geometry>
+<mesh filename="package://pendulum_sim/urdf/roller_conveyor//conveyor_roller.stl"/>
+</geometry>
+<material name="conveyor_roller_material">
+<color rgba="0.64705882352941179736 0.64705882352941179736 0.64705882352941179736 1.0"/>
+</material>
+</visual>
+<collision>
+<origin xyz="-1.5 0 -0.3048000000000001819" rpy="-1.570796326794896558 -1.570796326794896558 0" />
+<geometry>
+<mesh filename="package://pendulum_sim/urdf/roller_conveyor//conveyor_roller.stl"/>
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0"/>
+<mass value="0" />
+<inertia ixx="0" ixy="0"  ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<joint name="roller_8" type="revolute">
+<origin xyz="0.3048000000000001819 -0.60000000000000008882 0.91940000000000010605" rpy="1.570796326794896558 -0 1.570796326794896558" />
+<parent link="conveyor_base" />
+<child link="conveyor_roller_8" />
+<axis xyz="0 0 1"/>
+<limit effort="1" velocity="20" />
+<joint_properties friction="0.0"/>
+</joint>
+
+<link name="conveyor_roller_9">
+<visual>
+<origin xyz="-1.5 0 -0.3048000000000001819" rpy="-1.570796326794896558 -1.570796326794896558 0" />
+<geometry>
+<mesh filename="package://pendulum_sim/urdf/roller_conveyor//conveyor_roller.stl"/>
+</geometry>
+<material name="conveyor_roller_material">
+<color rgba="0.64705882352941179736 0.64705882352941179736 0.64705882352941179736 1.0"/>
+</material>
+</visual>
+<collision>
+<origin xyz="-1.5 0 -0.3048000000000001819" rpy="-1.570796326794896558 -1.570796326794896558 0" />
+<geometry>
+<mesh filename="package://pendulum_sim/urdf/roller_conveyor//conveyor_roller.stl"/>
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0"/>
+<mass value="0" />
+<inertia ixx="0" ixy="0"  ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<joint name="roller_9" type="revolute">
+<origin xyz="0.3048000000000001819 -0.89999999999999991118 0.91940000000000010605" rpy="1.570796326794896558 -0 1.570796326794896558" />
+<parent link="conveyor_base" />
+<child link="conveyor_roller_9" />
+<axis xyz="0 0 1"/>
+<limit effort="1" velocity="20" />
+<joint_properties friction="0.0"/>
+</joint>
+
+<link name="conveyor_roller_10">
+<visual>
+<origin xyz="-1.5 0 -0.3048000000000001819" rpy="-1.570796326794896558 -1.570796326794896558 0" />
+<geometry>
+<mesh filename="package://pendulum_sim/urdf/roller_conveyor//conveyor_roller.stl"/>
+</geometry>
+<material name="conveyor_roller_material">
+<color rgba="0.64705882352941179736 0.64705882352941179736 0.64705882352941179736 1.0"/>
+</material>
+</visual>
+<collision>
+<origin xyz="-1.5 0 -0.3048000000000001819" rpy="-1.570796326794896558 -1.570796326794896558 0" />
+<geometry>
+<mesh filename="package://pendulum_sim/urdf/roller_conveyor//conveyor_roller.stl"/>
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0"/>
+<mass value="0" />
+<inertia ixx="0" ixy="0"  ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<joint name="roller_10" type="revolute">
+<origin xyz="0.3048000000000001819 -1.2000000000000001776 0.91940000000000010605" rpy="1.570796326794896558 -0 1.570796326794896558" />
+<parent link="conveyor_base" />
+<child link="conveyor_roller_10" />
+<axis xyz="0 0 1"/>
+<limit effort="1" velocity="20" />
+<joint_properties friction="0.0"/>
+</joint>
+
+<link name="conveyor_roller_11">
+<visual>
+<origin xyz="-1.5 0 -0.3048000000000001819" rpy="-1.570796326794896558 -1.570796326794896558 0" />
+<geometry>
+<mesh filename="package://pendulum_sim/urdf/roller_conveyor//conveyor_roller.stl"/>
+</geometry>
+<material name="conveyor_roller_material">
+<color rgba="0.64705882352941179736 0.64705882352941179736 0.64705882352941179736 1.0"/>
+</material>
+</visual>
+<collision>
+<origin xyz="-1.5 0 -0.3048000000000001819" rpy="-1.570796326794896558 -1.570796326794896558 0" />
+<geometry>
+<mesh filename="package://pendulum_sim/urdf/roller_conveyor//conveyor_roller.stl"/>
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0"/>
+<mass value="0" />
+<inertia ixx="0" ixy="0"  ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<joint name="roller_11" type="revolute">
+<origin xyz="0.3048000000000001819 -1.5 0.91940000000000010605" rpy="1.570796326794896558 -0 1.570796326794896558" />
+<parent link="conveyor_base" />
+<child link="conveyor_roller_11" />
+<axis xyz="0 0 1"/>
+<limit effort="1" velocity="20" />
+<joint_properties friction="0.0"/>
+</joint>
+
+
+</robot>
