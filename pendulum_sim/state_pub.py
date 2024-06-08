@@ -91,7 +91,7 @@ class PendulumTFNode(Node):
             self.prev_cart_x = cart_x
             self.prev_total_rotation = total_rotation
             self.prev_time = current_time
-            print(total_rotation_dot)
+            # print(total_rotation_dot)
 
             # Update the velocity list for plotting
             self.times.append(current_time)
@@ -104,7 +104,7 @@ class PendulumTFNode(Node):
             msg.data = [cart_x, cart_x_dot, np.radians(total_rotation), np.radians(total_rotation_dot)]
             self.publisher.publish(msg)
 
-            self.get_logger().info(f'Published pendulum state: {msg.data}')
+            # self.get_logger().info(f'Published pendulum state: {msg.data}')
             
         except Exception as e:
             pass# self.get_logger().warn(f'Could not get transform: {e}')

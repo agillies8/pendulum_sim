@@ -66,7 +66,7 @@ class InvertedPendulumController(Node):
 
         # Compute the control input with respect to the set point
         error = state - self.x_ref
-        self.K = [[15.1, 35, 0, 0]]
+        self.K = [[10.0, 12.0, 5.0, -0.05]]
         u = -np.dot(self.K, error)
         # print(u)
         # Publish the control input
@@ -74,8 +74,8 @@ class InvertedPendulumController(Node):
         # control_msg.data = float(u)
         # self.publisher.publish(control_msg)
 
-        min_value = -50
-        max_value = 50
+        min_value = -5000
+        max_value = 5000
 
         clamped_u = self.clamp(u, min_value, max_value)
 
@@ -85,7 +85,7 @@ class InvertedPendulumController(Node):
         control_msg.linear.x = float(clamped_u)
         self.control_publisher.publish(control_msg)
 
-        self.get_logger().info(f'Published control input: {control_msg}')
+        # self.get_logger().info(f'Published control input: {control_msg}')
 
     def clamp(self, value, min_value, max_value):
         return max(min_value, min(value, max_value))

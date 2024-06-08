@@ -24,7 +24,7 @@ class ClockRelayNode(Node):
         relay_msg.clock.sec = msg.clock.sec
         relay_msg.clock.nanosec = msg.clock.nanosec
         self.get_logger().info(f'Published timestamp: {relay_msg.clock}')        
-        time.sleep(10.0)
+        time.sleep(1.0)
         self.publisher.publish(relay_msg)
 
 
