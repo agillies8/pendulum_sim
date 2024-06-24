@@ -1,0 +1,20 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/agillies8/IsaacSim-ros_workspaces/humble_ws/build/pendulum_sim",
+        "/home/agillies8/IsaacSim-ros_workspaces/humble_ws/install/pendulum_sim/lib/python3.10/site-packages",
+        "/home/agillies8/IsaacSim-ros_workspaces/humble_ws/install/isaac_ros_navigation_goal/lib/python3.10/site-packages",
+        "/home/agillies8/IsaacSim-ros_workspaces/humble_ws/install/isaac_ros2_messages/local/lib/python3.10/dist-packages",
+        "/home/agillies8/IsaacSim-ros_workspaces/humble_ws/install/custom_message/local/lib/python3.10/dist-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/agillies8/IsaacSim-ros_workspaces/humble_ws/build/pendulum_sim",
+        "/home/agillies8/IsaacSim-ros_workspaces/humble_ws/install/pendulum_sim/lib/python3.10/site-packages",
+        "/home/agillies8/IsaacSim-ros_workspaces/humble_ws/install/isaac_ros_navigation_goal/lib/python3.10/site-packages",
+        "/home/agillies8/IsaacSim-ros_workspaces/humble_ws/install/isaac_ros2_messages/local/lib/python3.10/dist-packages",
+        "/home/agillies8/IsaacSim-ros_workspaces/humble_ws/install/custom_message/local/lib/python3.10/dist-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ]
+}
