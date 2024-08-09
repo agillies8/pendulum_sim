@@ -22,7 +22,7 @@ import omni.isaac.lab_tasks.manager_based.classic.cartpole.mdp as mdp
 ##
 # Pre-defined configs
 ##
-from double_pendulum import DOUBLE_PENDULUM_CFG  # isort:skip
+from double_pendulum_rl.double_pendulum import DOUBLE_PENDULUM_CFG  # isort:skip
 
 
 ##
