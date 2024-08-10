@@ -54,6 +54,22 @@ from omni.isaac.lab.utils.dict import print_dict
 from omni.isaac.lab.utils.io import dump_pickle, dump_yaml
 
 import omni.isaac.lab_tasks  # noqa: F401
+
+# Add the directory containing the module to sys.path
+import sys
+import os
+module_path = os.path.abspath('')
+if module_path not in sys.path:
+    sys.path.insert(0, module_path)
+# Print sys.path to verify the directory was added
+print("Current sys.path:")
+for path in sys.path:
+    print(path)
+
+
+import double_pendulum_rl  # noqa: F401
+
+
 from omni.isaac.lab_tasks.utils import load_cfg_from_registry, parse_env_cfg
 from omni.isaac.lab_tasks.utils.wrappers.sb3 import Sb3VecEnvWrapper, process_sb3_cfg
 
